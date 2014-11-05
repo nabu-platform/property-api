@@ -21,7 +21,7 @@
 						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Name>${project.artifactId}</Bundle-Name>
 						<Bundle-Version>1.0.0</Bundle-Version>
-						<Export-Package>be.nabu.libs.property.api,be.nabu.libs.property</Export-Package>
+						<Export-Package>${project.groupId}.api,${project.groupId}</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>
