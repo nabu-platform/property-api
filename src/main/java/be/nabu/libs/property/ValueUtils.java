@@ -22,5 +22,4 @@ public class ValueUtils {
 		}
 		return false;
 	}
-	
 }

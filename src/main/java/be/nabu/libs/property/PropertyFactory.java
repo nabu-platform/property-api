@@ -9,6 +9,15 @@ import be.nabu.libs.property.api.Property;
 public class PropertyFactory {
 	
 	private Map<String, Property<?>> properties = new HashMap<String, Property<?>>();
+
+	private static PropertyFactory instance;
+	
+	public static PropertyFactory getInstance() {
+		if (instance == null) {
+			instance = new PropertyFactory();
+		}
+		return instance;
+	}
 	
 	@SuppressWarnings("rawtypes")
 	public Property<?> getProperty(String name) {
@@ -26,5 +35,14 @@ public class PropertyFactory {
 	
 	public void removeProperty(Property<?> property) {
 		properties.remove(property.getName());
+	}
+	
+	@SuppressWarnings("unused")
+	private void activate() {
+		instance = this;
+	}
+	@SuppressWarnings("unused")
+	private void deactivate() {
+		instance = null;
 	}
 }
