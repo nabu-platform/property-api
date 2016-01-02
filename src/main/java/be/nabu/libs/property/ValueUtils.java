@@ -8,11 +8,14 @@ public class ValueUtils {
 	
 	@SuppressWarnings("unchecked")
 	public static <T> T getValue(Property<T> property, Value<?>...values) {
+		T result = null;
 		for (Value<?> value : values) {
-			if (value.getProperty().equals(property))
-				return (T) value.getValue();
+			if (value.getProperty().equals(property)) {
+				result = (T) value.getValue();
+				break;
+			}
 		}
-		return property instanceof PropertyWithDefault ? ((PropertyWithDefault<T>) property).getDefault() : null;
+		return result == null && property instanceof PropertyWithDefault ? ((PropertyWithDefault<T>) property).getDefault() : result;
 	}
 	
 	public static boolean contains(Property<?> property, Value<?>...values) {
