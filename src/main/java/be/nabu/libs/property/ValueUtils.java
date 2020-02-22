@@ -10,7 +10,7 @@ public class ValueUtils {
 	public static <T> T getValue(Property<T> property, Value<?>...values) {
 		T result = null;
 		for (Value<?> value : values) {
-			if (value.getProperty().equals(property)) {
+			if (value != null && value.getProperty() != null && value.getProperty().equals(property)) {
 				result = (T) value.getValue();
 				break;
 			}
