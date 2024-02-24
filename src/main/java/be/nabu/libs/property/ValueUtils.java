@@ -7,6 +7,18 @@ import be.nabu.libs.property.api.Value;
 public class ValueUtils {
 	
 	@SuppressWarnings("unchecked")
+	public static <T> T getValue(Property<T> property, Iterable<Value<?>> values) {
+		T result = null;
+		for (Value<?> value : values) {
+			if (value != null && value.getProperty() != null && value.getProperty().equals(property)) {
+				result = (T) value.getValue();
+				break;
+			}
+		}
+		return result == null && property instanceof PropertyWithDefault ? ((PropertyWithDefault<T>) property).getDefault() : result;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static <T> T getValue(Property<T> property, Value<?>...values) {
 		T result = null;
 		for (Value<?> value : values) {
